@@ -12,15 +12,21 @@
                     <img
                     class="img-fluid"
                     :src="imageURL"
+                    @error="$event.target.src='https://facecog-bucket.s3.ap-northeast-2.amazonaws.com/person.png'"
                     alt="card image"
                     />
                 </p>
                 <h5 class="card-title">
-                    {{imageName}} 
+                    {{imageName}}
                     <span
                     class="badge badge-pill badge-success"
-                    style="font-size: 11px"
+                    style="font-size: 11px" v-if="isGroup === true"
                     >분류</span
+                    >
+                    <span
+                    class="badge badge-pill badge-danger"
+                    style="font-size: 11px" v-else
+                    >미분류</span
                     >
                 </h5>
                 <div class="attr-list d-flex">
@@ -72,7 +78,7 @@
                 <i class="far fa-plus-square plus-btn"></i>
                 <h2 class="card-title">{{imageName}}</h2>
                 <h6 class="card-text">
-                    f2f96d2c-c6ee-41db-a4c4-35ca69a26c9d
+                    {{faceID}}
                 </h6>
                 <div class="attr-list d-flex pt-1">
                     <div class="attr-title font-weight-bold w-50">
