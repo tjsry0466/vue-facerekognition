@@ -25,7 +25,7 @@ export default {
     Navbar,
     CardList,
     PieChart,
-    FaceList
+    FaceList,
   },
   data() {
     return {

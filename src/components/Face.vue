@@ -12,7 +12,7 @@
                     <img
                     class="img-fluid"
                     :src="imageURL"
-                    @error="$event.target.src='https://facecog-bucket.s3.ap-northeast-2.amazonaws.com/person.png'"
+                    @error="imageLoadError"
                     alt="card image"
                     />
                 </p>
@@ -117,7 +117,7 @@
                     <div class="attr-content">{{confidence}}</div>
                 </div>
                 <div class="text-muted mt-2 border-top mt-4">
-                    2 days ago
+                    {{created_at}}
                 </div>
                 </div>
             </div>
@@ -130,8 +130,16 @@
 <script>
 export default {
   name: "Card",
-  props: ['faceID', 'imageURL', 'imageName', 'isGroup', 'ageRangeLow', 'ageRangeHigh', 'gender', 'feeling', 'smile', 'glass', 'confidence'],
+  props: ['faceID', 'imageURL', 'imageName', 'isGroup', 'ageRangeLow', 'ageRangeHigh', 'gender', 'feeling', 'smile', 'glass', 'confidence', 'created_at'],
   mounted() {
+  },
+  methods: {
+    imageLoadError (event) {
+      event.target.src = 'https://facecog-bucket.s3.ap-northeast-2.amazonaws.com/person.png';
+    }
+  },
+  computed() {
+    
   }
 };
 </script>
