@@ -1,16 +1,18 @@
 <template>
-  <form class="form-inline my-2 my-lg-0">
+  <form class="form-inline">
     <input
        type="text"
-       class="form-control"
+       class="form-control mr-sm-2"
        placeholder="Upload Image"
        v-model="filename"
        @dragover.prevent
        @dragenter.prevent
        @drop.prevent="onDrop">
     <div class="input-group-append">
-      <span class="input-group-text" @click="onClickFile"><i class="fa fa-paperclip">
-        </i></span>
+      
+      <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+      <button class="btn btn-outline-dark my-2 my-sm-0" @click="onClickFile"><i class="fa fa-paperclip">
+        </i></button>
         <!-- <button
           class="btn btn-outline-success my-2 my-sm-0"
           @click="onClickUpload">Upload</button> -->

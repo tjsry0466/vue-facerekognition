@@ -138,9 +138,6 @@ export default {
       event.target.src = 'https://facecog-bucket.s3.ap-northeast-2.amazonaws.com/person.png';
     }
   },
-  computed() {
-    
-  }
 };
 </script>
 
