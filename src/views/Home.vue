@@ -61,7 +61,7 @@ export default {
   created() {
       this.loaded = false;
       axios
-      .get('http://localhost:3000/api/homepage/', {
+      .get('http://54.180.76.58:3000/api/homepage/', {
         headers: {
           // "Content-Type": "application/json",
         },
