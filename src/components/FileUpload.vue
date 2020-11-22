@@ -1,6 +1,7 @@
 <template>
   <form class="form-inline">
     <input
+       id="input-filename"
        type="text"
        class="form-control mr-sm-2"
        placeholder="Upload Image"
@@ -11,8 +12,8 @@
     <div class="input-group-append">
       
       <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-      <button class="btn btn-outline-dark my-2 my-sm-0" @click="onClickFile"><i class="fa fa-paperclip">
-        </i></button>
+      <span class="btn btn-outline-dark my-2 my-sm-0" @click="onClickFile"><i class="fa fa-paperclip">
+        </i></span>
         <!-- <button
           class="btn btn-outline-success my-2 my-sm-0"
           @click="onClickUpload">Upload</button> -->
@@ -44,7 +45,7 @@ export default {
 
 var frm = new FormData(); 
         frm.append("img", file); 
-        axios.post('http://localhost:3000/api/face', 
+        axios.post('http://54.180.76.58:3000/api/face', 
         frm, 
         { headers: { 'Content-Type': 'multipart/form-data' } }) 
         .then((response) => { // 응답 처리
@@ -57,6 +58,7 @@ var frm = new FormData();
     },
     onClickFile(event) {
       this.$refs.fileInput.click()
+      // __doPostBack('', null);
     },
     onFileChange(event) {
       this.inputImageFile(event.target.files)
@@ -69,7 +71,7 @@ var frm = new FormData();
           alert('이미지 파일만 등록이 가능합니다')
           return false
         }
-        this.filename = file.name + " 업로드 완료";
+        this.filename = file.name.slice(0, 5)+"~"+ file.name.slice(file.name.length-4, file.name.length)+ " 이미지 업로드 완료";
         this.preview(file);
         this.uploadImage(file);
       }
@@ -95,6 +97,9 @@ var frm = new FormData();
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#input-filename {
+  width: 240px;
+}
 .file-input {
     display: none;
 }
