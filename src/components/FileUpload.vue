@@ -49,7 +49,9 @@ var frm = new FormData();
         frm, 
         { headers: { 'Content-Type': 'multipart/form-data' } }) 
         .then((response) => { // 응답 처리
+        console.log('업로드 응답');
         console.log(response);
+        console.log(response.file);
          }) .catch((error) => { // 예외 처리 
          })
     },

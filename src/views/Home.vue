@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <Navbar/>
     <div class="container">
@@ -6,7 +7,7 @@
       <div class="piechart border border shadow-sm p-3 mb-4 bg-white rounded">
         <pie-chart v-if="loaded" :chartdata="chartdata"></pie-chart>
       </div>
-      <FaceList v-if="loaded" :facedata="facedata"></FaceList>
+      <FaceList :facedata="facedata"></FaceList>
     </div>
   </div>
 </template>
@@ -59,6 +60,22 @@ export default {
     }
   },
   created() {
+
+    this.$socket.on('update', (data)=> { 
+        this.loaded = false;
+        console.log(data);
+        this.convertdata(data);
+        // console.log(this.facedata.length);
+        this.loaded = true;
+        this.$bvToast.toast('이미지가 추가가 완료되었습니다.', {
+          title: `알림`,
+          variant: 'success',
+          solid: true,
+          autoHideDelay: 2000,
+          appendToast: false,
+        })
+      });
+
       this.loaded = false;
       axios
       .get('http://54.180.76.58:3000/api/homepage/', {
@@ -67,31 +84,45 @@ export default {
         },
       })
       .then((response) => {
-          this.carddata= [
+          this.convertdata(response.data);
+          this.loaded = true;
+      })
+      .catch(function(error) {
+        console.log('에러');
+        console.log(error);
+      });
+  },
+  mounted(){
+
+  },
+  methods: {
+    convertdata(response) {
+      
+      this.carddata= [
             {
               title: "인식 데이터 수",
-              value: response.data.carddata.count,
+              value: response.carddata.count,
               color: 'border-dark',
             },
             {
               title: "분류 데이터 수",
-              value: response.data.carddata.yesGroupCount,
+              value: response.carddata.yesGroupCount,
               color: 'border-success',
             },
             {
               title: "미분류 데이터 수",
-              value: response.data.carddata.noGroupCount,
+              value: response.carddata.noGroupCount,
               color: 'border-danger',
             },
             {
               title: "그룹 데이터 수",
-              value: response.data.carddata.groupCount,
+              value: response.carddata.groupCount,
               color: 'border-primary',
             },
           ]
         this.chartdata= {
           //Data to be represented on x-axis
-          labels: Object.keys(response.data.chartdata),
+          labels: Object.keys(response.chartdata),
           datasets: [
             {
               label: '# of Votes',
@@ -112,20 +143,16 @@ export default {
                   // 'rgba(255, 159, 64, 1)'
               ],
               borderWidth: 1,
-              data: Object.values(response.data.chartdata),
+              data: Object.values(response.chartdata),
             }
           ]
         }
-        this.facedata = response.data.facedata;
-      })
-      .catch(function(error) {
-        console.log('에러');
-        console.log(error);
-      });
+        this.facedata = response.facedata;
+    }
   },
-  mounted(){
-    this.loaded = true;
-  }
+  // computed() {
+
+  // }
 };
 </script>
 
