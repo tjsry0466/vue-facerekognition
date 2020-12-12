@@ -27,7 +27,7 @@ export default {
   created() {
       this.id =this.$route.params.id;
     axios
-      .get('http://l54.180.76.58:3000/api/face/' + this.id, {
+      .get('http://54.180.76.58:3000/api/face/' + this.id, {
         headers: {
           // "Content-Type": "application/json",
         },
