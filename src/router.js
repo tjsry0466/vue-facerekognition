@@ -7,8 +7,11 @@ import FaceDetailView from "@/views/FaceDetailView.vue";
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   routes: [
+    // {
+    //   path: '*', redirect: '/'
+    // },
     {
       path: "/",
       name: "Home",
@@ -24,5 +27,7 @@ export default new Router({
       name: "FaceDetail",
       component: FaceDetailView,
     }
-  ]
+  ],
+  
+
 })
