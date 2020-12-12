@@ -5,7 +5,7 @@ import store from './store'
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import io from 'socket.io-client';
-const socket = io.connect('http://localhost:3000/', { reconnect: true, transports: ['websocket'] });
+const socket = io.connect('http://54.180.76.58:3000/', { reconnect: true, transports: ['websocket'] });
 
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'

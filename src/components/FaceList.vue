@@ -21,6 +21,7 @@
           <div class="row">
             <Face 
                 v-for="(value, key) in filterdata" :key="key"
+                :id="value.id"
                 :faceID="value.faceID" 
                 :imageURL="value.imageURL" 
                 :imageName="value.imageName" 

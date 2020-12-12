@@ -4,6 +4,7 @@
         class="image-flip"
         ontouchstart="this.classList.toggle('hover');"
         >
+        
         <div class="mainflip">
             <div class="frontside">
             <div class="card">
@@ -76,7 +77,7 @@
                 >
                 <!-- <font-awesome-icon :icon="['far', 'fa-plus-square', 'plus-btn']"/> -->
                 <i class="far fa-plus-square plus-btn"></i>
-                <h2 class="card-title">{{imageName}}</h2>
+                <router-link :to="'/face/'+ id "><h2 class="card-title">{{imageName}}</h2></router-link>
                 <h6 class="card-text">
                     {{faceID}}
                 </h6>
@@ -130,7 +131,7 @@
 <script>
 export default {
   name: "Card",
-  props: ['faceID', 'imageURL', 'imageName', 'isGroup', 'ageRangeLow', 'ageRangeHigh', 'gender', 'feeling', 'smile', 'glass', 'confidence', 'created_at'],
+  props: ['id', 'faceID', 'imageURL', 'imageName', 'isGroup', 'ageRangeLow', 'ageRangeHigh', 'gender', 'feeling', 'smile', 'glass', 'confidence', 'created_at'],
   mounted() {
   },
   methods: {

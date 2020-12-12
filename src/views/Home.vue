@@ -67,7 +67,7 @@ export default {
         this.convertdata(data);
         // console.log(this.facedata.length);
         this.loaded = true;
-        this.$bvToast.toast('이미지가 추가가 완료되었습니다.', {
+        this.$bvToast.toast('이미지가 추가되었습니다.', {
           title: `알림`,
           variant: 'success',
           solid: true,
